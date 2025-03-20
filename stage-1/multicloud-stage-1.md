@@ -228,5 +228,5 @@ Run the following command to verify the existence of the dynamodb tables:
 ```sh
 aws dynamodb list-tables --region us-east-1
 ```
-[verify tables](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-1/images/verify%20tables.png)
+![verify tables](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-1/images/verify%20tables.png)
 
