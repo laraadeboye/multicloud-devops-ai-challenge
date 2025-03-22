@@ -153,10 +153,10 @@ Create a file named `dynamodb.tf` within the project folder. Enter the following
 resource "aws_dynamodb_table" "cloudmart_products" {
   name           = "cloudmart-products"
   billing_mode   = "PAY_PER_REQUEST"  # On-demand capacity
-  hash_key       = "product_id"
+  hash_key       = "id"
 
   attribute {
-    name = "product_id"
+    name = "id"
     type = "S"
   }
 
@@ -171,10 +171,10 @@ resource "aws_dynamodb_table" "cloudmart_products" {
 resource "aws_dynamodb_table" "cloudmart_orders" {
   name           = "cloudmart-orders"
   billing_mode   = "PAY_PER_REQUEST"  # On-demand capacity
-  hash_key       = "order_id"  
+  hash_key       = "id"  
 
   attribute {
-    name = "order_id"
+    name = "id"
     type = "S"
   }
 
@@ -189,10 +189,10 @@ resource "aws_dynamodb_table" "cloudmart_orders" {
 resource "aws_dynamodb_table" "cloudmart_tickets" {
   name           = "cloudmart-tickets"
   billing_mode   = "PAY_PER_REQUEST"  # On-demand capacity
-  hash_key       = "ticket_id"
+  hash_key       = "id"
 
   attribute {
-    name = "ticket_id"
+    name = "id"
     type = "S"
   }
 
