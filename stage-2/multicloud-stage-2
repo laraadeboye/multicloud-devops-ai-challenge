@@ -21,7 +21,7 @@ docker --version
 sudo usermod -a -G docker $(whoami)
 newgrp docker
 ```
-[docker installed on ec2]
+![docker installed on ec2](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/docker%20installed%20on%20ec2.png)
 
 ## Step 2: Create Docker image for CloudMart
 
@@ -33,8 +33,8 @@ mkdir -p challenge-day2/backend && cd challenge-day2/backend
 wget https://tcb-public-events.s3.amazonaws.com/mdac/resources/day2/cloudmart-backend.zip
 unzip cloudmart-backend.zip
 ```
- [download cloudmart]
- [unzip cloudmart]
+ ![download cloudmart](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/download%20cloudmart.png)
+ ![unzip cloudmart](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/unzipt%20cloudmart.png)
 
 Using an editor, create the `.env` file and enter the following content:
 
@@ -46,7 +46,7 @@ BEDROCK_AGENT_ALIAS_ID=<your-bedrock-agent-alias-id>
 OPENAI_API_KEY=<your-openai-api-key>
 OPENAI_ASSISTANT_ID=<your-openai-assistant-id>
 ```
-[backend .env]
+![backend .env](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/backend%20.env.png)
 
 Also create the Dockerfile and enter the following content:
 
@@ -70,7 +70,7 @@ mkdir frontend && cd frontend
 wget https://tcb-public-events.s3.amazonaws.com/mdac/resources/day2/cloudmart-frontend.zip
 unzip cloudmart-frontend.zip
 ```
-[download cloudmart frontend]
+![download cloudmart frontend](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/download%20cloudmart%20frontend.png)
 
 Create the dockerfile `Dockerfile` and enter the following code:
 
@@ -92,7 +92,7 @@ EXPOSE 5001
 CMD ["serve", "-s", ".", "-l", "5001"]
 
 ```
-[frontend dockerfile]
+![frontend dockerfile](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/frontend%20dockerfile.png)
 
 ## Kubernetes
 
@@ -120,7 +120,7 @@ mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/
 echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
 kubectl version
 ```
-[kubectl installed 1]
+![kubectl installed 1](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/kubectl%20installed%201.png)
 
 4. Create an EKS Cluster named `cloudmart` with 1 node.
 
@@ -135,8 +135,7 @@ eksctl create cluster \
   --managed
 ```
  
-[cluster provisioned]
-
+![cluster provisioned](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/cluster%20provisioned.png)
 
 5. Connect to the EKS cluster using the `kubectl` configuration
 
@@ -150,7 +149,7 @@ aws eks update-kubeconfig --name cloudmart
 kubectl get svc
 kubectl get nodes
 ```
-[svc and nodes running]
+![svc and nodes running](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/svc%20and%20nodes%20running.png)
 
 7. Create the role and service account to provide pods access to services used by the application (DynamoDB, Bedrock..)
 
@@ -164,7 +163,7 @@ eksctl create iamserviceaccount \
   --approve
 ```
 
-[service account created]
+![service account created](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/service%20account%20created.png)
 
 We applied full administrative access in the above command. In a production environment, you should use more restrictive policies following the least privilege principle. You can create a custom policy with the specific permissions the application needs.
 
@@ -172,8 +171,8 @@ We applied full administrative access in the above command. In a production envi
 
 1. Create an ECR Repository on the AWS Management Console for the Backend and upload the docker image to it: `Repository name: cloudmart-backend`
 
-[ECR create 1]
-[ECR create 2]
+![ECR create 1](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/ECR%20create%201.png)
+![ECR create 2](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/ECR%20create%202.png)
 
 
 2. Navigate to the backend folder, then Click on **view push commands** on the ECR console. 
@@ -187,11 +186,11 @@ cd challenge-day2/backend
 Follow the steps displayed by ECR to build the docker image
 When you click on view push commands, you will see a pop up similar to the below:
 
-[view push commands]
+![view push commands](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/view%20push%20commands.png)
 
 Here is the image uploaded to the public repo we created on ECR:
 
-[image uploaded to ECR]
+![image uploaded to ECR](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/image%20uploaded%20to%20ECR.png)
 
 3. Create a file named `cloudmart-backend.yaml`and enter the code for the kubernetes deployment yaml file for the backend
 
@@ -251,11 +250,11 @@ spec:
       port: 5000
       targetPort: 5000
 ```
-[backend deploy.yaml]
+![backend deploy.yaml](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/backend%20deploy.yaml.png)
 
 copy the image uri from the console and replace the image in the deployment file above with it.
 
-[copy image uri]
+![copy image uri](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/copy%20image%20uri.png)
 
 
 4. Deploy the backend on kubernetes:
@@ -264,7 +263,7 @@ To deploy the backend on kubernetes, run the following command:
 ```
 kubectl apply -f cloudmart-backend.yaml
 ```
-[deploy app backend]
+![deploy app backend](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/deploy%20app%20backend.png)
 
 Verify the status of the objects that have been created and get the public IP for the api
 
@@ -273,13 +272,13 @@ kubectl get pods
 kubectl get deployment
 kubectl get service
 ```
-[verify backend deployment]
+![verify backend deployment](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/verify%20backend%20deployment.png)
 
 The "ImagePullBackOff" error seen when we run the `kubectl get pods` usually happens when Kubernetes fails to pull an image from a registry. Verify that the image uri has been replaced correctly and apply the deployment again: `kubectl apply -f cloudmart-backend.yaml`
 
-[container creating]
+![container creating](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/container%20creating.png)
 
-[pod running]
+![pod running](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/pod%20running.png)
 
 ## Step 5 Deployment of the Frontend on Kubernetes
 
@@ -296,22 +295,22 @@ Content to of the frontend `.env`
 VITE_API_BASE_URL=http://<your_url_kubernetes_api>:5000/api
 
 ```
-[vite url]
+![vite url](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/vite%20url.png)
 
 2. Create ECR Repository for the frontend and upload the docker image to it
 
 ```
 Repository name: cloudmart-frontend
 ```
-[frontend repo]
+![frontend repo](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/frontend%20repo.png)
 
 3. Select the **cloudmart-frontend** repo and choose **view push commands**. Follow the steps displayed by ECR to build the Docker image.
 
-[view push commands for frontend]
+![view push commands for frontend](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/view%20push%20commands%20for%20frontend.png)
 
-[docker image built]
+![docker image built](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/docker%20image%20built.png)
 
-[docker image tag and push]
+![docker image tag and push](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/docker%20image%20tag%20and%20push.png)
 
 4. Create a kubernetes deployment file for the frontend
 
@@ -356,7 +355,7 @@ spec:
       targetPort: 5001
 ```
 
-[frontend deploy-file]
+![frontend deploy-file](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/frontend%20deploy-file.png)
 
 Deploy the frontend on Kubernetes with the following command:
 
@@ -371,16 +370,16 @@ kubectl get pods
 kubectl get deployment
 kubectl get service
 ```
-[Verify frontend deployment]
+![Verify frontend deployment](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/Verify%20frontend%20deployment.png)
 
 When we enter the external-ip of both the backend and the frontend mapped to their ports on a browser, we observe that they are accessible:
-[frontend running 2]
+![frontend running 2](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/frontend%20running%202.png)
 
-[backend accessible]
+![backend accessible](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/backend%20accessed.png)
 
 I am able to access the admin page and add new products:
 
-[admin page]
+![admin page](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-2/images/admin%20page.png)
 
 ## Step 6 [Optional] Delete Cluster
 If you choose to delete the cluster, at this point, run the following commands:
