@@ -217,9 +217,7 @@ output "cloudmart_tickets_table_arn" {
 }
 ```
 
-![create dynamodb](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-1/images/create%20dynamodb.png)
-
-![terraform dyna plan](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-1/images/terraform%20dyna%20plan.png)
+![create dynamodb](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-1/images/Screenshot%202025-03-22%20155209.png)
 
 
 ## Step 8 Verify dynamodb tables creation
@@ -228,5 +226,5 @@ Run the following command to verify the existence of the dynamodb tables:
 ```sh
 aws dynamodb list-tables --region us-east-1
 ```
-![verify tables](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-1/images/verify%20tables.png)
+![verify tables](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-1/images/Screenshot%202025-03-22%20155455.png)
 
