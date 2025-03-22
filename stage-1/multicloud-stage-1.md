@@ -146,12 +146,12 @@ aws s3 ls
 
 ## Step 7 Create DynamoDB tables
 
-Create a file named `dynamodb.tf` within the project folder. Enter the following code to create the Dynamodb tables for cloudmart: `cloudmart_products`, `cloudmart_orders`, `cloudmart_tickets`
+Create a file named `dynamodb.tf` within the project folder. Enter the following code to create the Dynamodb tables for cloudmart: `cloudmart-products`, `cloudmart-orders`, `cloudmart-tickets`
 
 ```tf
 # CloudMart Products Table
 resource "aws_dynamodb_table" "cloudmart_products" {
-  name           = "cloudmart_products"
+  name           = "cloudmart-products"
   billing_mode   = "PAY_PER_REQUEST"  # On-demand capacity
   hash_key       = "product_id"
 
@@ -169,7 +169,7 @@ resource "aws_dynamodb_table" "cloudmart_products" {
 
 # CloudMart Orders Table
 resource "aws_dynamodb_table" "cloudmart_orders" {
-  name           = "cloudmart_orders"
+  name           = "cloudmart-orders"
   billing_mode   = "PAY_PER_REQUEST"  # On-demand capacity
   hash_key       = "order_id"  
 
@@ -187,7 +187,7 @@ resource "aws_dynamodb_table" "cloudmart_orders" {
 
 # CloudMart Tickets Table
 resource "aws_dynamodb_table" "cloudmart_tickets" {
-  name           = "cloudmart_tickets"
+  name           = "cloudmart-tickets"
   billing_mode   = "PAY_PER_REQUEST"  # On-demand capacity
   hash_key       = "ticket_id"
 
