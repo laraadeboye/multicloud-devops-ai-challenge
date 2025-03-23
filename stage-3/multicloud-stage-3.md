@@ -1,4 +1,4 @@
-# MultiCloud, DevOps & AI Challenge - Stage 2
+# MultiCloud, DevOps & AI Challenge - Stage 3
 
  In this third stage, I achieve the following:
  - Configure CI/CD using AWS codebuild and AWS codepipeline
@@ -20,21 +20,21 @@ git push
 3. Configure AWS CodePipeline:
 - Go to the AWS CodePipeline console and select **Create a New Pipeline:**
     -  Under "Choose creation option", select **Build custom pipeline** then select **Next**
-    [choose creation option].
+    ![choose creation option](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/choose%20creation%20option.png)
 
     - Under "Choose pipeline settings", name the pipeline ` cloudmart-cicd-pipeline` . Leave the default settings. Then, select **Next**
 
-[choose pipeline settings]
+![choose pipeline settings](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/choose%20pipeline%20settings.png)
 - In the "Add source stage", Choose **GitHub (via OAUth app)**, for simplicity and Choose **Connect to Github**. Confirm the connection via OAuth and select the `cloudmart` repository` and main branch as the source.
 
-[add source stage 1]
-[add source stage 2]
-[add source stage 3]
-[add source stage 4]
+![add source stage 1](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/add%20source%20stage%201.png)
+![add source stage 2](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/add%20source%20stage%202.png)
+![add source stage 3](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/add%20source%20stage%203.png)
+![add source stage 4](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/add%20source%20stage%204.png)
 
 - Under the "Add build stage", select **Other build providers**, then select **AWS CodeBuild**, Choose **Create project** (This will direct you to another window, where you can configure AWS cloudbuild settings). Name the build project, `cloudmartBuild`
 
-[create new build project]
+![create new build project](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/create%20new%20build%20project.png)
 
 - Add the 'cloudmartBuild' project you created as the build stage.
 
@@ -42,7 +42,7 @@ git push
 
 - Review the settings and create the pipeline
 
-[Create pipeline]
+![Create pipeline](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/Create%20pipeline.png)
 
 
 
@@ -93,14 +93,14 @@ artifacts:
     - cloudmart-frontend.yaml
 
 ```
-[AWS codebuild setting]
-[AWS codebuild setting 2]
-[AWS codebuild setting 3]
-[AWS codebuild setting 4]
+![AWS codebuild setting](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/AWS%20codebuild%20setting.png)
+![AWS codebuild setting 2](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/AWS%20codebuild%20setting%202.png)
+![AWS codebuild setting 3](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/AWS%20codebuild%20setting%203.png)
+![AWS codebuild setting 4](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/AWS%20codebuild%20setting%204.png)
 
 
 When we first run the build, It fails with an error:
-[command error]
+![command error](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/command%20error.png)
 
 The reason for this error is authorization. We must ensure that the cloudmart role that was created has full access to ECR to perform the build actions
 
@@ -108,35 +108,36 @@ Resolve this by adding the `AmazonElasticContainerRegistryPublicFullAccess` perm
 
 - Access the IAM console > Roles.
 - Look for the role created "cloudmartBuild" for CodeBuild.
-[iam cloudmart service role]
+![iam cloudmart service role](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/iam%20cloudmart%20service%20role.png)
 
 - Select **Add permissions**, then **attach policies**
 
-[add permissions cloudmart service role]
+![add permissions cloudmart service role](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/add%20permissions%20cloudmart%20service%20role.png)
 
 Search for and select 
 **AmazonElasticContainerRegistryPublicFullAccess** 
-[add Ecr permissions]
+![add Ecr permissions](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/add%20ECR%20permissions.png)
 
-[policy attached to role]
+![policy attached to role](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/policy%20attached%20to%20role.png)
 
 When we run the build again, it will be successful
-[build success]
+![build success](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/build%20success.png)
 
-[build success 2]
+![build success 2](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/build%20success%202.png)
 
 5. Configure AWS CodeBuild for Application Deployment
 
 Add a new stage within the pipeline under the build stage named `Deploy`. 
-[edit pipeline]
+![edit pipeline](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/edit%20pipeline.png)
 
-[add stage]
+![add stage](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/add%20stage.png)
 
 Then click on **Add action group**
-[deploy stage added. add action group]
+![deploy stage added. add action group](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/deploy%20stage%20added.png)
 
+![deploy stage added 2](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/deploy%20stage%20added%20(2).png)
 
-[deploy]
+![deploy](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/deploy.png)
 
 In the edit action dialogue box, configure:
    - Name: `Deploy`
@@ -181,7 +182,7 @@ phases:
 
 Finally, Click **Done**, then **Save**.
 
-[deploy stage added]
+![deploy stage added ](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/deploy%20stage%20added%20(2).png)
 
 - Replace the image URI on line 18 of the **`cloudmart-frontend.yaml`** files with CONTAINER_IMAGE.
 
@@ -199,12 +200,14 @@ git add -A
 git commit -m "changed to Featured Products on CloudMart"
 git push
 ```
-[deploy stage is added]
-[deploy is successful]
 
-[featured product changed]
+![deploy is successful](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/deploy%20is%20successful.png)
+
+![featured product changed](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/Featured%20product%20changed.png)
+
 2. **Observe the Pipeline Execution:**
     - Watch how CodePipeline automatically triggers the build.
     - After the build, the deployment phase should begin.
+
 3. **Verify the Deployment:**
     - Check Kubernetes using **`kubectl`** commands to confirm the application update.
