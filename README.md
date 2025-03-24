@@ -1,0 +1,1 @@
+CloudMart is an online Ecommerce company facing issues with IT inefficiency and rising customer support costs. Additionally, it is loosing competition to another e-commerce store that is offering the same products at lower prices.
