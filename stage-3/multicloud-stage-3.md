@@ -1,4 +1,5 @@
 # MultiCloud, DevOps & AI Challenge - Stage 3
+## Putting the cloud app on autopilot with Devops CI/CD on AWS
 
  In this third stage, I achieve the following:
  - Configure CI/CD using AWS codebuild and AWS codepipeline
