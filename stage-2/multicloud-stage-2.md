@@ -1,6 +1,6 @@
 
 # MultiCloud, DevOps & AI Challenge - Stage 2
-
+## Deploying the app with Docker and Kubernetes on AWS
  In this second stage, I achieve the following:
  - Install docker on workstation
  - Create docker image for CloudMart app
