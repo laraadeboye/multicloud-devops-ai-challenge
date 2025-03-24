@@ -1,5 +1,6 @@
 
 # MultiCloud, DevOps & AI Challenge - Stage 1
+## Automating AWS provisioning using Terraform and Claude
 
  In this first stage, I achieve the following:
  - Used Claude to generate Terraform code
