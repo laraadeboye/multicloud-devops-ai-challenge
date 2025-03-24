@@ -20,6 +20,7 @@ git push
 3. Configure AWS CodePipeline:
 - Go to the AWS CodePipeline console and select **Create a New Pipeline:**
     -  Under "Choose creation option", select **Build custom pipeline** then select **Next**
+
     ![choose creation option](https://github.com/laraadeboye/multicloud-devops-ai-challenge/blob/doc/update-readme/stage-3/images/choose%20creation%20option.png)
 
     - Under "Choose pipeline settings", name the pipeline ` cloudmart-cicd-pipeline` . Leave the default settings. Then, select **Next**
